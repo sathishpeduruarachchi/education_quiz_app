@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778468508118",
+    "project_id": "eduquizsystem",
+    "storage_bucket": "eduquizsystem.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778468508118:android:62a35cb375995934246477",
+        "android_client_info": {
+          "package_name": "com.example.edu_quiz_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7nZatMkUrGavCG86s5cPU-1bqCnZwUO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
