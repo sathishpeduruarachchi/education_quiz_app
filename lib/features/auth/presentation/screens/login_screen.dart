@@ -1,6 +1,6 @@
 // lib/presentation/features/auth/screens/login_screen.dart
 
-import 'package:edu_quiz_app/presentation/routes/app_router.dart';
+import 'package:edu_quiz_app/config/router/app_router.dart';
 import 'package:flutter/material.dart';
 
 
