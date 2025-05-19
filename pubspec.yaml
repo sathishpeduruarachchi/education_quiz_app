@@ -42,6 +42,7 @@ dependencies:
   google_sign_in: ^6.3.0
   flutter_bloc: ^9.1.1
   equatable: ^2.0.7
+  flutter_signin_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -24,6 +24,10 @@ class SignupScreen extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Confirm Password'),
               obscureText: true,
             ),
+            const TextField(
+              decoration: InputDecoration(labelText: 'Officer ID'),
+              obscureText: true,
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
