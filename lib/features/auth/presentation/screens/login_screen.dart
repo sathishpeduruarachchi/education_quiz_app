@@ -7,6 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:go_router/go_router.dart';
 
+// Add this extension for safePop inside your file or somewhere global
+extension GoRouterExtensions on BuildContext {
+  void safePop() {
+    if (GoRouter.of(this).canPop()) {
+      pop();
+    } else {
+      go(AppRoutes.home);
+    }
+  }
+}
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -25,14 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text('Login'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            if (GoRouter.of(context).canPop()) {
-              context.pop();
-            } else {
-              // No previous route to pop, navigate to a safe screen (e.g. home or splash)
-              context.go(AppRoutes.home);
-            }
-          },
+          onPressed: () => context.safePop(), // Use safePop here
         ),
       ),
       body: BlocListener<AuthBloc, AuthState>(
@@ -67,8 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: () {
                       context.read<AuthBloc>().add(LoginWithEmailPressed(
-                          _emailController.text.trim(),
-                          _passwordController.text.trim()));
+                            _emailController.text.trim(),
+                            _passwordController.text.trim(),
+                          ));
                     },
                     child: const Text('Login'),
                   ),

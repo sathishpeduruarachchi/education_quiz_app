@@ -6,6 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+// Add extension here as well or import if global
+extension GoRouterExtensions on BuildContext {
+  void safePop() {
+    if (GoRouter.of(this).canPop()) {
+      pop();
+    } else {
+      go(AppRoutes.login);
+    }
+  }
+}
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -26,13 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
         title: const Text('Sign Up'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            if (GoRouter.of(context).canPop()) {
-              context.pop();
-            } else {
-              context.go(AppRoutes.login); // fallback
-            }
-          },
+          onPressed: () => context.safePop(), // Use safePop here
         ),
       ),
       body: BlocListener<AuthBloc, AuthState>(
@@ -84,7 +89,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     return;
                   }
 
-                  context.read<AuthBloc>().add(SignUpWithEmailPressed(email, password, name));
+                  context
+                      .read<AuthBloc>()
+                      .add(SignUpWithEmailPressed(email, password, name));
                 },
                 child: const Text('Create Account'),
               ),

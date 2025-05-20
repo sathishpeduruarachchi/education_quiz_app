@@ -1,7 +1,17 @@
-import 'package:edu_quiz_app/config/router/app_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';  // Import GoRouter
+
+// Extension for safePop again
+extension GoRouterExtensions on BuildContext {
+  void safePop() {
+    if (GoRouter.of(this).canPop()) {
+      pop();
+    } else {
+      go('/login');
+    }
+  }
+}
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -36,13 +46,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         title: const Text('Reset Password'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            if (GoRouter.of(context).canPop()) {
-              context.pop();
-            } else {
-              context.go(AppRoutes.login);  // fallback
-            }
-          },
+          onPressed: () => context.safePop(), // Use safePop here
         ),
       ),
       body: LayoutBuilder(
