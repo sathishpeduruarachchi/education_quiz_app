@@ -2,6 +2,7 @@
 
 import 'package:edu_quiz_app/config/router/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.login);
+                  context.go(AppRoutes.login);
                 },
                 child: const Text('Get Started'),
               ),
